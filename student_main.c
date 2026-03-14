@@ -17,28 +17,38 @@ int main() {
     for(i = 0; i < n2; i++) {
         scanf("%d", &set2[i]);
     }
+
+    // Find intersection without duplicates
     for(i = 0; i < n1; i++) {
-    for(j = 0; j < n2; j++) {
-        if(set1[i] == set2[j]) {
+        for(j = 0; j < n2; j++) {
+            if(set1[i] == set2[j]) {
 
-            int found = 0;
-            for(k = 0; k < count; k++) {
-                if(intersection[k] == set1[i]) {
-                    found = 1;
-                    break;
+                int found = 0;
+
+                // check if already stored
+                for(k = 0; k < count; k++) {
+                    if(intersection[k] == set1[i]) {
+                        found = 1;
+                        break;
+                    }
                 }
-            }
 
-            if(!found) {
-                intersection[count] = set1[i];
-                count++;
+                if(!found) {
+                    intersection[count] = set1[i];
+                    count++;
+                }
             }
         }
     }
-    }
+
+    // Print intersection
     for(i = 0; i < count; i++) {
-        printf("%d ", intersection[i]);
+        printf("%d", intersection[i]);
+        if(i < count - 1) {
+            printf(" ");
+        }
     }
+
     printf("\n");
 
     return 0;
